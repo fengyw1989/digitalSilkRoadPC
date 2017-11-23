@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alliOperManage/alliance.css">
+    <style>
+        .content .search-input{
+            margin: auto;
+            margin-bottom: 27px;
+        }
+        .content .search-input .el-input__inner{
+            width: 256px;
+            height: 34px;
+        }
+    </style>
+</head>
+<body>
+  <div class="content"  id="app">
+                <h2>添加联盟文章</h2>
+                <div class="add-content">
+                    <h3><i></i>联盟信息编辑</h3>
+                    <el-form ref="form" :model="form" label-width="100px">
+                            <el-form-item label="信息名称："  class="search-input search-input1">
+                                <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="发布到："  class="search-input search-input1">
+                                <el-select v-model="form.menuId1">
+                                    <el-option label="首页" value="1"></el-option>
+                                    <el-option label="联盟介绍" value="2"></el-option>
+                                    <el-option label="联盟服务" value="3"></el-option>
+                                    <el-option label="联盟和您" value="4"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item class="search-input search-input1">
+                                <el-select v-model="form.menuId2">
+                                    <el-option label="联盟简介" value="1"></el-option>
+                                    <el-option label="基础服务" value="2"></el-option>
+                                    <el-option label="增值服务" value="3"></el-option>
+                                    <el-option label="联系我们" value="4"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="缩略图："  class="search-input search-input1">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        action="https://jsonplaceholder.typicode.com/posts/"
+                                        :show-file-list="false"
+                                        :on-success="handleAvatarSuccess"
+                                        :before-upload="beforeAvatarUpload">
+                                    <img v-if="form.imgsrc" :src="form.imgsrc" class="avatar">
+                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                            </el-form-item>
+                            <el-form-item label="正文："  class="search-input search-input1">
+                                <el-input type="textarea" v-model="form.content"></el-input>
+                            </el-form-item>
+                            <div class="add-btn-box">
+                                <span class="common-btn common-btn-active" style="margin-right: 35px">保存</span>
+                                <span class="common-btn common-btn-active" style="margin-right: 35px">保存并发布</span>
+                                <span class="common-btn">取消</span>
+                            </div>
+                    </el-form>
+                </div>
+            </div>
+  <!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+  <script src="../../js/alliOperManage/editAllianceArticle.js"></script>
+</body>
+
+</html>

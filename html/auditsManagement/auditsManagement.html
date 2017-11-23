@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+</head>
+<body>
+<!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--<link rel="stylesheet" type="text/css" href="../../resource/element-ui.css">-->
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+<div id="app">
+    <header>
+    <div class="head-container width cf">
+        <div class="head-left fl">
+            <div class="head-left1 fl">
+                <img src="../../img/logo_03.png" alt="">
+            </div>
+            <div class="head-left2 fl">
+                <h3>一带一路</h3>
+                <h4>数字丝绸之路公共服务平台</h4>
+            </div>
+        </div>
+        <div class="head-right fr">运维管理管，欢迎登录<i class="icon iconfont icon-tuichu"></i></div>
+    </div>
+</header>
+    <div class="main">
+        <div class="width cf">
+            <div class="menu-left">
+    <el-menu id="fortj"
+            default-active="2-2-1"
+            class="el-menu-vertical-demo"
+            @open=""
+            @close=""
+            :default-active="defaultactive"
+            unique-opened="true">
+        <el-submenu index="1">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>系统管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="1-1"><a @click="pageJumps('1-1')" class="tj" href="../systemManage/account.html" target="_self">后台账号管理</a></el-menu-item>
+                <el-menu-item index="1-2"><a @click="pageJumps('1-2')" class="tj" href="../systemManage/rolePermission.html" target="_self">角色管理</a></el-menu-item>
+                <el-menu-item index="1-3"><a @click="pageJumps('1-3')" class="tj" href="#" target="_self">数据字典</a></el-menu-item>
+                <el-menu-item index="1-4"><a @click="pageJumps('1-4')" class="tj" href="#" target="_self">系统日志</a></el-menu-item>
+                <el-menu-item index="1-5"><a @click="pageJumps('1-5')" class="tj" href="#" target="_self">系统设置</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="2">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>审核管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="2-1"><a @click="pageJumps('2-1')" class="tj" href="../auditsManagement/auditsManagement.html" target="_self">需求审核</a></el-menu-item>
+                <el-menu-item index="2-2"><a @click="pageJumps('2-2')" class="tj" href="#" target="_self">服务审核</a></el-menu-item>
+                <el-menu-item index="2-3"><a @click="pageJumps('2-3')" class="tj" href="#" target="_self">活动审核</a></el-menu-item>
+                <el-menu-item index="2-4"><a @click="pageJumps('2-4')" class="tj" href="#" target="_self">系统设置</a></el-menu-item>
+                <el-menu-item index="2-5"><a @click="pageJumps('2-5')" class="tj" href="#" target="_self">示范平台接入审核</a></el-menu-item>
+                <el-menu-item index="2-6"><a @click="pageJumps('2-6')" class="tj" href="#" target="_self">示范孵化器申请审核</a></el-menu-item>
+                <el-menu-item index="2-7"><a @click="pageJumps('2-7')" class="tj" href="#" target="_self">示范联盟申请审核</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="3">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>运营管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="3-1"><a @click="pageJumps('3-1')" class="tj" href="#" target="_self">注册用户管理</a></el-menu-item>
+                <el-menu-item index="3-2"><a @click="pageJumps('3-2')" class="tj" href="#" target="_self">资讯内容管理</a></el-menu-item>
+                <el-menu-item index="3-3"><a @click="pageJumps('3-3')" class="tj" href="#" target="_self">活动内容管理</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="4">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>广告位运营管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="4-1"><a @click="pageJumps('4-1')" class="tj" href="#" target="_self">广告位管理</a></el-menu-item>
+                <el-menu-item index="4-2"><a @click="pageJumps('4-2')" class="tj" href="#" target="_self">广告内容编辑</a></el-menu-item>
+                <el-menu-item index="4-3"><a @click="pageJumps('4-3')" class="tj" href="#" target="_self">广告设置</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="5">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>联盟运营管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="5-1"><a @click="pageJumps('5-1')" class="tj" href="#" target="_self">联盟入门申请</a></el-menu-item>
+                <el-menu-item index="5-2"><a @click="pageJumps('5-2')" class="tj" href="#" target="_self">联盟文章内容管理</a></el-menu-item>
+                <el-menu-item index="5-3"><a @click="pageJumps('5-2')" class="tj" href="#" target="_self">联盟动态内容管理</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="6">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>联盟广告管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="6-1"><a @click="pageJumps('6-1')" class="tj" href="#" target="_self">联盟广告位管理</a></el-menu-item>
+                <el-menu-item index="6-2"><a @click="pageJumps('6-2')" class="tj" href="#" target="_self">联盟广告内容编辑</a></el-menu-item>
+                <el-menu-item index="6-3"><a @click="pageJumps('6-3')" class="tj" href="#" target="_self">联盟广告设置</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="7">
+            <template slot="title">
+                <i class="icon iconfont icon-system-extension"></i>
+                <span>数据统计</span>
+            </template>
+            <el-menu-item-group data-url="">
+                <el-menu-item index="7-1"><a @click="pageJumps('7-1')" class="tj" href="#" target="_self">用户注册统计</a></el-menu-item>
+                <el-menu-item index="7-2"><a @click="pageJumps('7-2')" class="tj" href="#" target="_self">需求信息统计</a></el-menu-item>
+                <el-menu-item index="7-3"><a @click="pageJumps('7-3')" class="tj" href="#" target="_self">服务信息统计</a></el-menu-item>
+                <el-menu-item index="7-4"><a @click="pageJumps('7-4')" class="tj" href="#" target="_self">活动信息统计</a></el-menu-item>
+                <el-menu-item index="7-5"><a @click="pageJumps('7-5')" class="tj" href="#" target="_self">示范平台统计</a></el-menu-item>
+                <el-menu-item index="7-6"><a @click="pageJumps('7-6')" class="tj" href="#" target="_self">示范孵化器统计</a></el-menu-item>
+                <el-menu-item index="7-7"><a @click="pageJumps('7-7')" class="tj" href="#" target="_self">示范园区统计</a></el-menu-item>
+                <el-menu-item index="7-8"><a @click="pageJumps('7-8')" class="tj" href="#" target="_self">示范联盟统计</a></el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+    </el-menu>
+</div>
+            <div class="content">需求审核</div>
+        </div>
+    </div>
+    <footer>
+    <div class="foot-content width">
+        <p><span>指导单位：工业和信息化部</span><span>主办单位：工业和信息化部软件与集成电路促进中心</span><span>技术支持：九次方大数据信息集团有限公司</span></p>
+        <p>©2013-2018 GGdoc.com Inc. All Rights Reserved 版权所有 经营许可证编号:浙ICP备13025218号</p>
+    </div>
+</footer>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/systemManage/account.js"></script>
+</body>
+
+</html>

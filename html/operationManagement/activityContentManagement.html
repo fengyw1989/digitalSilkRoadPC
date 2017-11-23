@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/operationManagement/operationManagement.css">
+    <style>
+        .content .search-input{
+            width: 320px;
+        }
+    </style>
+</head>
+<body>
+   <div class="content"  id="app">
+                <h2>活动内容管理</h2>
+                <div class="search-box">
+                    <el-form ref="form" :model="form" label-width="80px">
+                            <el-form-item label="关键字："  class="search-input fl">
+                                <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="活动类型："  class="search-input fl">
+                                <el-select v-model="form.type" placeholder="请选择">
+                                    <el-option label="论坛会议" value="shanghai"></el-option>
+                                    <el-option label="展览" value="beijing"></el-option>
+                                    <el-option label="文化交流" value="wenhua"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="活动地点："  class="search-input fl">
+                                <el-select v-model="form.account" placeholder="请选择">
+                                    <el-option label="中国" value="shanghai"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="状态："  class="search-input fl">
+                                <el-select v-model="form.account" placeholder="请选择">
+                                    <el-option label="未发布" value="shanghai1"></el-option>
+                                    <el-option label="已发布" value="shanghai2"></el-option>
+                                    <el-option label="已撤回" value="shanghai3"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="活动时间："  class="search-input fl">
+                                <el-input v-model="form.time"></el-input>
+                            </el-form-item>
+                             <div class="fl" style="margin-left: 6px; margin-top: 6px">
+                                 <span class="search-btn"><i class="icon iconfont icon-chaxun"></i>查询</span>
+                                 <span  class="search-chongzhi"><i class="icon iconfont icon-zhongzhi"></i>重置</span>
+                             </div>
+                    </el-form>
+                </div>
+                <div class="search-content">
+                    <a href="./addActivity.html">
+                        <span class="add-btn"><i class="icon iconfont icon-jia" style="margin-right: 3px; font-size: 14px"></i>新增活动</span>
+                    </a>
+                    <el-table
+                            :data="tableData"
+                            stripe
+                            style="width: 100%">
+                        <el-table-column
+                                prop="title"
+                                label="活动主题">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px; cursor: pointer;" @click="toDetail(scope.row.state)">{{ scope.row.title }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="type"
+                                label="活动类型">
+                        </el-table-column>
+                        <el-table-column
+                                prop="address"
+                                label="活动地点">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                label="活动时间">
+                        </el-table-column>
+                        <el-table-column
+                                prop="state"
+                                label="状态">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px" v-if="scope.row.state===1">未发布</span>
+                                <span style="margin-left: 10px" v-if="scope.row.state===2">已发布</span>
+                                <span style="margin-left: 10px" v-if="scope.row.state===3">已撤回</span>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="block" style="margin-top: 20px">
+                        <span class="demonstration" class="pagesize">共{{total}}条</span>
+                        <el-pagination
+                                @size-change="handleSizeChange"
+                                @current-change="handleCurrentChange"
+                                :current-page.sync="currentPage"
+                                :page-size="100"
+                                layout="prev, pager, next, jumper"
+                                :total="1000" class="page">
+                        </el-pagination>
+                    </div>
+                </div>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/operationManagement/activityContentManagement.js"></script>
+</body>
+
+</html>

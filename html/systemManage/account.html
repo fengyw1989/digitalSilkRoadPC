@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/systemManageLess/account.css">
+    <style>
+    </style>
+</head>
+<body>
+   <div class="content"  id="app">
+                <h2>后台账号管理</h2>
+                <div class="search-box">
+                    <el-form ref="form" :model="form" label-width="80px">
+                        <div class="search-box-left fl">
+                            <el-form-item label="管理员ID："  class="search-input fl">
+                                <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="姓名："  class="search-input fl">
+                                <el-input v-model="form.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="角色："  class="search-input fl">
+                                <el-select v-model="form.region" placeholder="请选择">
+                                    <el-option label="系统管理员" value="shanghai"></el-option>
+                                    <el-option label="超级管理员" value="beijing"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="账号状态："  class="search-input fl">
+                                <el-select v-model="form.account" placeholder="请选择">
+                                    <el-option label="登录1" value="shanghai"></el-option>
+                                    <el-option label="登录2" value="beijing"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </div>
+                        <div class="search-box-right fr">
+                            <span class="search-btn"><i class="icon iconfont icon-chaxun"></i>搜索</span>
+                            <span  class="search-chongzhi"><i class="icon iconfont icon-zhongzhi"></i>重置</span>
+                        </div>
+                    </el-form>
+                </div>
+                <div class="search-content">
+                    <a href="./addAccount.html">
+                        <span class="add-btn"><i class="icon iconfont icon-jia" style="margin-right: 3px; font-size: 14px" ></i>添加账号</span>
+                    </a>
+                    <el-table
+                            :data="tableData"
+                            stripe
+                            style="width: 100%">
+                        <el-table-column
+                                prop="id"
+                                label="管理员ID"
+                                width="137">
+                        </el-table-column>
+                        <el-table-column
+                                prop="js"
+                                label="角色"
+                                width="110">
+                        </el-table-column>
+                        <el-table-column
+                            prop="name"
+                            width="114"
+                            label="管理员姓名">
+                    </el-table-column>
+                        <el-table-column
+                                prop="phone"
+                                width="133"
+                                label="联系电话">
+                        </el-table-column>
+                        <el-table-column
+                                prop="date"
+                                width="134"
+                                label="建立日期">
+                        </el-table-column>
+                        <el-table-column
+                                prop="state"
+                                width="90"
+                                label="账号状态">
+                        </el-table-column>
+                        <el-table-column
+                                fixed="right"
+                                label="操作">
+                            <template slot-scope="scope">
+                                <el-button type="text" size="small">禁用</el-button>
+                                <el-button type="text" size="small" @click="resetPassword">重置密码</el-button>
+                                <a href="./editAccount.html">
+                                    <el-button type="text" size="small">修改</el-button>
+                                </a>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="block" style="margin-top: 20px">
+                        <span class="demonstration" class="pagesize">共{{total}}条</span>
+                        <el-pagination
+                                @size-change="handleSizeChange"
+                                @current-change="handleCurrentChange"
+                                :current-page.sync="currentPage"
+                                :page-size="100"
+                                layout="prev, pager, next, jumper"
+                                :total="1000" class="page">
+                        </el-pagination>
+                    </div>
+                </div>
+        <el-dialog
+                title="重置密码"
+                :visible.sync="dialogVisible"
+                :show-close="false"
+                :modal="false"
+                width="30%"
+                center>
+            <p style="text-align: center">重置密码为： {{rePasswrod}}</p>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/systemManage/account.js"></script>
+</body>
+
+</html>

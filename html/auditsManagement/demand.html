@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/auditsManagement/demand.css">
+</head>
+<body>
+<div class="content" id="app">
+    <h2>需求信息审核</h2>
+    <div class="search-box">
+        <el-form ref="form" :model="form" label-width="90px" class="cf">
+            <div class="search-box-left fl cf">
+                <el-form-item label="需求关键字："  class="search-input fl">
+                    <el-input v-model="form.key"></el-input>
+                </el-form-item>
+                <el-form-item label="审核状态："  class="search-input fl">
+                    <el-select v-model="form.state" placeholder="请审核状态">
+                        <el-option label="未审核" value="1"></el-option>
+                        <el-option label="已通过" value="2"></el-option>
+                        <el-option label="已审核未通过" value="3"></el-option>
+                        <el-option label="已失效" value="4"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="发布时间："  class="search-input fl">
+                    <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"></el-date-picker>
+                </el-form-item>
+            </div>
+            <div class="search-box-right fr">
+                <span class="search-btn"><i class="icon iconfont icon-chaxun"></i>搜索</span>
+                <span  class="search-chongzhi"><i class="icon iconfont icon-zhongzhi"></i>重置</span>
+            </div>
+        </el-form>
+    </div>
+    <div class="search-content">
+        <el-table
+                :data="tableData"
+                stripe>
+            <el-table-column
+                    prop="index"
+                    label="序号" width="80">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="需求名称">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px; cursor: pointer;" @click="toDetail(scope.row.state)">{{ scope.row.name }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="fbname"
+                    label="发布人">
+            </el-table-column>
+            <el-table-column
+                    prop="fbdate"
+                    label="发布时间">
+            </el-table-column>
+            <el-table-column
+                    prop="state"
+                    label="需求状态">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.state }}</span>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block" style="margin-top: 20px">
+            <span class="demonstration" class="pagesize">共{{total}}条</span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page.sync="currentPage"
+                    :page-size="100"
+                    layout="prev, pager, next, jumper"
+                    :total="1000" class="page">
+            </el-pagination>
+        </div>
+    </div>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/auditsManagement/demand.js"></script>
+</body>
+
+</html>

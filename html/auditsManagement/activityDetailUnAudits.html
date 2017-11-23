@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/auditsManagement/demandDetail.css">
+</head>
+<body>
+<div class="content" id="app">
+    <h2>活动信息详情</h2>
+    <div class="con1 con">
+        <div class="group">
+            <label>活动名称：</label>
+            <span>一带一路产业合作高峰论坛会议公告</span>
+            <button class="state" :class="state.class" v-text="state.name"></button>
+        </div>
+        <div class="group-small">
+            <label>发布人：</label>
+            <span>waneret</span>
+            <label>发布时间：</label>
+            <span>2017-11-09 11:28:42</span>
+        </div>
+    </div>
+    <div class="con" style="padding: 0 28px;">
+        <div class="hr"></div>
+    </div>
+    <div class="con2 con">
+        <h4>活动信息</h4>
+        <div class="p">
+            <div class="group">
+                <label>活动类型：</label>
+                <span>论坛会议</span>
+            </div>
+            <div class="group">
+                <label>活动地点：</label>
+                <span>中国</span>
+            </div>
+            <div class="group">
+                <label>活动时间：</label>
+                <span>2017年12月9日 9:00 ~  2017年12月20日 18:00</span>
+            </div>
+            <div class="group">
+                <label>所属国家：</label>
+                <span>中国</span>
+            </div>
+        </div>
+    </div>
+    <div class="con3 con">
+        <h4>活动内容</h4>
+        <div class="p">
+            <p>
+                在网络传媒越来越发达的今天，路灯杆触电事故也引发了广泛的讨论，有的媒体竟然发出这样的感叹“危险的电线杆！“道路照明给我们出行生活带来极大的便利，是我们生活中必不可少的一部分。
+            </p>
+            <p>
+                但是我们常常会发现，在非常需要照明的恶劣天气，路灯却不亮。这不能怪管理部门，管理部门也是出于一片好心，担心会引发漏电事故，对人们造成伤害，因而在恶劣环境下只好断电。
+            </p>
+            <p>
+                安全用电，可靠供电”是道路照明的基础。
+            </p>
+            <p>
+                2014年底，因某地市路灯管理部门的要求，秉岳电气开始关注路灯杆防漏电。通过大量的调查研究，秉岳电气发现，路灯杆漏电的主要原因是灯杆内电缆连接处理不当造成的，占90%以上的因素。
+            </p>
+        </div>
+    </div>
+    <div class="con2 con">
+        <h4>联系信息</h4>
+        <div class="p">
+            <div class="group">
+                <label>联系人：</label>
+                <span>陈先生</span>
+            </div>
+            <div class="group">
+                <label>手机号码：</label>
+                <span>18601234567</span>
+            </div>
+            <div class="group">
+                <label>E-Mail：</label>
+                <span>123@hotmail.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="con5 con" v-show="state.opt">
+        <button class="btn pass" v-text="state.btnname1"></button>
+        <button class="btn nopass" v-text="state.btnname2"></button>
+    </div>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/auditsManagement/activityDetail.js"></script>
+</body>
+
+</html>

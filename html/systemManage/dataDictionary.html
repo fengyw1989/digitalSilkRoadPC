@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/systemManageLess/account.css">
+    <style>
+        .content .el-pagination__editor.el-input .el-input__inner{
+            width: 36px
+        }
+        .el-dialog__header{
+            padding: 0;
+        }
+        .el-input__inner{
+            border: 1px solid #dedede;
+            height: 34px;
+            background: #f5f5f5;
+            border-radius: 0;
+        }
+        .el-textarea__inner{
+            border: 1px solid #dedede;
+            height: 126px;
+            background: #f5f5f5;
+            border-radius: 0;
+        }
+        .el-form-item__label{
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="content"  id="app">
+                <h2>数据字典</h2>
+                <div class="add-content">
+                    <div class="dictionary-left fl">
+                        <p class="active"><i class="icon iconfont icon-shouji"></i>需求类别</p>
+                        <p><i class="icon iconfont icon-shouji"></i>服务类别</p>
+                        <p><i class="icon iconfont icon-shouji"></i>园区类别</p>
+                    </div>
+                    <div class="dictionary-right fr">
+                        <div class="role-search-box">
+                            <span class="add-btn fr"><i class="icon iconfont icon-jia" style="margin-right: 3px; font-size: 14px"></i>新增字典值</span>
+                        </div>
+                        <div class="search-content">
+                            <el-table
+                                    :data="tableData"
+                                    stripe
+                                    style="width: 100%">
+                                <el-table-column
+                                        prop="order"
+                                        label="序号"
+                                        width="88"
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                        prop="dValue"
+                                        label="字典值">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="state"
+                                        label="状态">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="desc"
+                                        label="备注">
+                                </el-table-column>
+                                <el-table-column
+                                        fixed="right"
+                                        width="250"
+                                        label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button type="text" size="small" @click="editDictionary()">修改</el-button>
+                                        <el-button type="text" size="small" @click="checkDictionary()">查看</el-button>
+                                        <el-button type="text" size="small">启用</el-button>
+                                        <el-button type="text" size="small">升序</el-button>
+                                        <el-button type="text" size="small">降序</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <div class="block" style="margin-top: 20px">
+                                <span class="demonstration" class="pagesize">共<span v-text="total"></span>条</span>
+                                <el-pagination
+                                        @size-change="handleSizeChange"
+                                        @current-change="handleCurrentChange"
+                                        :current-page.sync="currentPage"
+                                        :page-size="100"
+                                        layout="prev, pager, next, jumper"
+                                        :total="1000" class="page">
+                                </el-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             <el-dialog
+                     title="维护字典值"
+                     :visible.sync="dialogVisible1"
+                     :show-close="false"
+                     :modal="false"
+                     width="600"
+                     center>
+                 <el-form :model="form">
+                     <el-form-item label="序号：" :label-width="formLabelWidth">
+                         <el-input v-model="form.order" auto-complete="off"></el-input>
+                     </el-form-item>
+                     <el-form-item label="字典值：" :label-width="formLabelWidth">
+                         <el-input v-model="form.value" auto-complete="off"></el-input>
+                     </el-form-item>
+                     <el-form-item label="备注：" :label-width="formLabelWidth">
+                         <el-input v-model="form.desc"  type="textarea"  auto-complete="off"></el-input>
+                     </el-form-item>
+                 </el-form>
+                 <div slot="footer" class="dialog-footer">
+                     <el-button type="primary" @click="dialogVisible1 = false">确定</el-button>
+                     <el-button @click="dialogVisible1 = false">取消</el-button>
+                 </div>
+             </el-dialog>
+             <el-dialog
+                     title="维护字典值"
+                     :visible.sync="dialogVisible2"
+                     :show-close="false"
+                     :modal="false"
+                     width="600"
+                     center>
+                  <div class="data-content">
+                      <div class="data-content-item">
+                          <div class="item-left fl">序号</div>
+                          <div class="item-right fl">001</div>
+                      </div>
+                      <div class="data-content-item">
+                          <div class="item-left fl">字典值</div>
+                          <div class="item-right fl">天津</div>
+                      </div>
+                      <div class="data-content-item" style="height: 127px;">
+                          <div class="item-left fl" style="height: 127px;">备注</div>
+                          <div class="item-right fl">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+                      </div>
+                  </div>
+                 <div slot="footer" class="dialog-footer">
+                     <el-button @click="dialogVisible2 = false">取消</el-button>
+                 </div>
+             </el-dialog>
+            </div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/systemManage/dataDictionary.js"></script>
+</body>
+
+</html>

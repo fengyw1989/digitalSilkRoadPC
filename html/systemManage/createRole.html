@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/systemManageLess/account.css">
+    <style>
+        .content .search-input .el-input__inner{
+            width: 262px;
+            height: 32px;
+            border-radius: 0;
+        }
+        .el-tree{
+            background: none;
+        }
+    </style>
+</head>
+<body>
+ <div class="content"  id="app">
+                <h2>创建角色</h2>
+                <div class="role-content cf">
+                    <div class="cf">
+                        <div class="role-content-left fl">
+                            <h4>创建角色名称</h4>
+                            <el-input v-model="form.roleName" class="search-input"></el-input>
+                        </div>
+                        <div class="role-content-right fr">
+                            <h4>角色权限配置</h4>
+                            <div class="role-content-right-content">
+                                <el-tree
+                                        :data="data2"
+                                        show-checkbox
+                                        default-expand-all
+                                        node-key="id"
+                                        ref="tree"
+                                        highlight-current
+                                        :props="defaultProps">
+                                </el-tree>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-btn-box" style="margin-top: -60px">
+                        <span class="common-btn common-btn-active"@click="getCheckedKeys" style="margin-right: 35px">保存</span>
+                        <span class="common-btn"  @click="resetChecked">取消</span>
+                    </div>
+                </div>
+            </div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/systemManage/createRole.js"></script>
+</body>
+
+</html>

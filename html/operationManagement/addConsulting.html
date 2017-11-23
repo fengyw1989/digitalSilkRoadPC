@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/operationManagement/operationManagement.css">
+    <style>
+        .content .search-input{
+            width: 630px;
+            border-radius: 0;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .content .search-input2{
+            width: 644px;
+            height: 215px;
+            margin-left: 172px;
+        }
+        .content .search-input .el-input__inner{
+            width: 544px;
+            height: 34px;
+            border-radius: 0;
+        }
+        .content .el-textarea__inner{
+            border-radius: 0;
+            height: 215px;
+            background: #f5f5f5;
+            border: 1px solid #dedede;
+        }
+        .add-btn-box{
+            width: 430px;
+            margin: auto;
+            margin-top: 40px;
+            margin-bottom: 100px;
+        }
+
+    </style>
+</head>
+<body>
+  <div class="content"  id="app">
+                <h2>资讯编辑发布</h2>
+                <div class="add-content">
+                    <h3><i></i>资讯编辑发布<span class="fr" style="color: #999999">发布人：<span style="color: #303030">张三</span></span></h3>
+                    <el-form ref="form" :model="form" label-width="100px">
+                        <div>
+                            <el-form-item label="标题："  class="search-input search-input1">
+                                <el-input v-model="form.mId"></el-input>
+                            </el-form-item>
+                        </div>
+                        <div class="upload-container cf">
+                            <div class="upload-container-left fl">缩略图：</div>
+                            <div class="upload-container-right fl">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        action="https://jsonplaceholder.typicode.com/posts/"
+                                        :show-file-list="false"
+                                        :on-success="handleAvatarSuccess"
+                                        :before-upload="beforeAvatarUpload">
+                                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                                <span class="upload-text">上传</span>
+                            </div>
+                        </div>
+                        <div>
+                            <el-form-item label="正文："  class="search-input search-input2">
+                                <el-input v-model="form.desc" type="textarea"></el-input>
+                            </el-form-item>
+                        </div>
+                            <div class="add-btn-box">
+                                <span class="common-btn common-btn-active" style="margin-right: 35px">保存</span>
+                                <span class="common-btn" style="margin-right: 35px">保存并发布</span>
+                                <span class="common-btn">重置</span>
+                            </div>
+                    </el-form>
+                </div>
+            </div>
+  <!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+  <script src="../../js/operationManagement/addConsulting.js"></script>
+</body>
+
+</html>

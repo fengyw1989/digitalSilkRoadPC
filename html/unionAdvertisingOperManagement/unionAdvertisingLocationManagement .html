@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/unionAdvertisingOperManagement/unionAdvertisingOperManagement.css">
+    <style>
+        .content .search-input{
+            width: 320px;
+        }
+        .el-input__suffix{
+            right: 15px;
+        }
+        .content .search-input1{
+            width: 110px;
+            margin-right: 10px;
+        }
+        .content .search-input1 .el-input__inner{
+            width: 110px;
+        }
+        .content .search-input3{
+            margin-right: 10px;
+            width: 215px;
+        }
+        .content .search-input3 .el-input__inner{
+            width: 110px;
+        }
+
+        .input-number-container{
+            display: inline-block;
+            margin-top: 6px;
+            color: #5a5e66;
+            font-size: 12px;
+        }
+        .input-number{
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 3px;
+            background: #f2f3f4;
+            border: 1px solid #dbdcdd
+        }
+    </style>
+</head>
+<body>
+<div class="content"  id="app">
+    <h2>联盟广告位管理</h2>
+    <div class="search-box">
+        <el-form ref="form" :model="form" label-width="106px">
+            <div class="cf">
+                <el-form-item label="广告位置："  class="search-input search-input3 fl">
+                    <el-select v-model="form.account" placeholder="请选择">
+                        <el-option label="首页" value="shanghai1"></el-option>
+                        <el-option label="合作信息" value="shanghai2"></el-option>
+                        <el-option label="产业资源池" value="shanghai3"></el-option>
+                        <el-option label="行业动态" value="shanghai4"></el-option>
+                        <el-option label="注册" value="shanghai5"></el-option>
+                        <el-option label="登录" value="shanghai6"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item class="search-input search-input1  fl" label-width="0px">
+                    <el-select v-model="form.account" placeholder="请选择">
+                        <el-option label="需求" value="shanghai1"></el-option>
+                        <el-option label="服务" value="shanghai2"></el-option>
+                        <el-option label="示范平台" value="shanghai3"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  class="search-input search-input1  fl" label-width="0px">
+                    <el-select v-model="form.account" placeholder="请选择">
+                        <el-option label="列表" value="shanghai1"></el-option>
+                        <el-option label="详情" value="shanghai2"></el-option>
+                        <el-option label="搜索结果" value="shanghai3"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  class="search-input search-input1 fl" label-width="0px">
+                    <el-select v-model="form.account" placeholder="请选择">
+                        <el-option label="上" value="shanghai1"></el-option>
+                        <el-option label="中" value="shanghai2"></el-option>
+                        <el-option label="下" value="shanghai3"></el-option>
+                    </el-select>
+                </el-form-item>
+                <div class="input-number-container fl">
+                    第
+                    <input type="number" class="input-number">
+                    广告位
+                </div>
+            </div>
+            <el-form-item label="播放方式："  class="search-input fl">
+                <el-select v-model="form.type" placeholder="请选择">
+                    <el-option label="轮播" value="shanghai"></el-option>
+                    <el-option label="静态展示" value="beijing"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="广告位类型："  class="search-input fl">
+                <el-select v-model="form.type" placeholder="请选择">
+                    <el-option label="站内广告" value="shanghai"></el-option>
+                    <el-option label="焦点广告" value="beijing"></el-option>
+                    <el-option label="优选广告" value="wenhua"></el-option>
+                    <el-option label="标准广告" value="wenhua1"></el-option>
+                </el-select>
+            </el-form-item>
+            <div class="fr" style="margin-left: 6px; margin-top: 6px">
+                <span class="search-btn"><i class="icon iconfont icon-chaxun"></i>查询</span>
+                <span  class="search-chongzhi"><i class="icon iconfont icon-zhongzhi"></i>重置</span>
+            </div>
+        </el-form>
+    </div>
+    <div class="search-content">
+        <a href="./addAdvertisingLocation.html">
+            <span class="add-btn"><i class="icon iconfont icon-jia" style="margin-right: 3px; font-size: 14px"></i>添加账号</span>
+        </a>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="order"
+                    width="80"
+                    label="广告编号">
+            </el-table-column>
+            <el-table-column
+                    prop="type"
+                    label="广告位置">
+            </el-table-column>
+            <el-table-column
+                    prop="title"
+                    label="当前广告">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px; cursor: pointer;" @click="toDetail(scope.row.state)">{{ scope.row.title }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="address"
+                    label="所属">
+            </el-table-column>
+            <el-table-column
+                    prop="date"
+                    label="广告位大小">
+            </el-table-column>
+            <el-table-column
+                    prop="content"
+                    label="广告放置内容">
+            </el-table-column>
+            <el-table-column
+                    prop="state"
+                    label="状态">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px" v-if="scope.row.state===1">占用</span>
+                    <span style="margin-left: 10px" v-if="scope.row.state===2">无</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    width="200"
+                    label="操作">
+                <template slot-scope="scope">
+                    <el-button type="text" size="small">修改</el-button>
+                    <el-button type="text" size="small" @click="resetPassword">添加/设置广告</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block" style="margin-top: 20px">
+            <span class="demonstration" class="pagesize">共{{total}}条</span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page.sync="currentPage"
+                    :page-size="100"
+                    layout="prev, pager, next, jumper"
+                    :total="1000" class="page">
+            </el-pagination>
+        </div>
+    </div>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/unionAdvertisingOperManagement/unionAdvertisingLocationManagement .js"></script>
+</body>
+
+</html>

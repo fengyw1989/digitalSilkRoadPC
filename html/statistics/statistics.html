@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/statistics/statistics.css">
+</head>
+<body>
+<div class="content" id="app">
+    <h2>数据统计</h2>
+    <div class="statistics">
+        <div class="box-item">
+            <div class="item">
+                <span class="number" v-text="redegit.number"></span>
+                +<span class="small" v-text="redegit.plus"></span>
+                <span class="label">注册用户</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="demand.number"></span>
+                +<span class="small" v-text="demand.plus"></span>
+                <span class="label">需求信息</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="service.number"></span>
+                +<span class="small" v-text="service.plus"></span>
+                <span class="label">服务信息</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="activity.number"></span>
+                +<span class="small" v-text="activity.plus"></span>
+                <span class="label">活动信息</span>
+            </div>
+        </div>
+        <div class="box-item">
+            <div class="item">
+                <span class="number" v-text="platform.number"></span>
+                <span class="label">示范平台接入</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="incubator.number"></span>
+                <span class="label">示范孵化器接入</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="alliances.number"></span>
+                <span class="label">示范联盟接入</span>
+            </div>
+            <div class="item">
+                <span class="number" v-text="park.number"></span>
+                <span class="label">示范园区接入</span>
+            </div>
+        </div>
+        <div id="echarts1" class="echarts">
+
+        </div>
+    </div>
+</div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../resource/echarts.min.js"></script>
+<script src="../../js/statistics/statistics.js"></script>
+</body>
+</html>

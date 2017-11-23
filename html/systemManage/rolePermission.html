@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit"/>
+    <title>一带一路后台管理平台</title>
+    <!--公用样式库-->
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/reset.css">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css" href="../../resource/fonts/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../../css/commonLess/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/systemManageLess/account.css">
+    <style>
+        .content .role-search-box .search-input{
+            margin: auto;
+            margin-bottom: 27px;
+        }
+        .content .role-search-box .search-input .el-input__inner{
+            width: 256px;
+            height: 34px;
+        }
+        .content .el-pagination__editor.el-input .el-input__inner{
+            width: 36px
+        }
+        .role-search-box .el-input-group__append, .el-input-group__prepend{
+            background: none;
+            border: none;
+        }
+        .add-btn{
+            margin: 0;
+        }
+        .content .search-content{
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+ <div class="content"  id="app">
+                <h2>角色权限</h2>
+                <div class="add-content">
+                    <h3><i></i>角色权限管理</h3>
+                    <div class="role-search-box">
+                        <div class="fl">
+                            <el-input placeholder="请输入内容" v-model="input5" class="input-with-select search-input" style="position: relative">
+                                <el-button slot="append" icon="el-icon-search" style="position: absolute; left: -70px;top: 14px; color: #4482ed; font-size: 22px;"></el-button>
+                            </el-input>
+                        </div>
+                        <a href="./createRole.html">
+                            <span class="add-btn fr"><i class="icon iconfont icon-jia" style="margin-right: 3px; font-size: 14px"></i>创建角色</span>
+                        </a>
+
+                    </div>
+                    <div class="search-content">
+                        <el-table
+                                :data="tableData"
+                                stripe
+                                style="width: 100%">
+                            <el-table-column
+                                    prop="order"
+                                    label="序号"
+                                    width="88"
+                                    >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="orleName"
+                                    label="角色名称">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="config"
+                                    label="权限配置">
+                            </el-table-column>
+                            <el-table-column
+                                    fixed="right"
+                                    label="操作">
+                                <template slot-scope="scope">
+                                    <a href="./editPermission.html">
+                                      <el-button type="text" size="small">权限修改</el-button>
+                                    </a>
+                                        <el-button type="text" size="small">启用/禁用</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div class="block" style="margin-top: 20px; margin-bottom: 32px">
+                            <span class="demonstration" class="pagesize">共{{total}}条</span>
+                            <el-pagination
+                                    @size-change="handleSizeChange"
+                                    @current-change="handleCurrentChange"
+                                    :current-page.sync="currentPage"
+                                    :page-size="100"
+                                    layout="prev, pager, next, jumper"
+                                    :total="1000" class="page">
+                            </el-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--公用js库-->
+<script src="../../resource/vue.min.js"></script>
+<script src="../../resource/element-ui.js"></script>
+<script src="../../js/common/common.js"></script>
+
+<script src="../../js/systemManage/rolePermission.js"></script>
+</body>
+
+</html>
